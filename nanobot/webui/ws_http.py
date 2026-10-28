@@ -1052,6 +1052,11 @@ class GatewayHTTPHandler:
             else:
                 scope = default_scope
             row["workspace_scope"] = scope.payload()
+            # The field is a host declaration: a browser that predates it keeps
+            # every chat with a user turn read-only, so an editable chat has to
+            # say so explicitly. A running turn is a temporary 409 on the
+            # mutation itself, not a reason to hide the picker.
+            row["project_locked"] = False
             handle = handles.get(key)
             if handle is not None:
                 row["handle"] = handle.public_payload()

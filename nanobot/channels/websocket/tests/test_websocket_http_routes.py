@@ -2412,6 +2412,9 @@ async def test_sessions_list_only_returns_websocket_sessions_by_default(
             project.resolve()
         )
         assert rows["websocket:beta"]["workspace_scope"]["access_mode"] == "restricted"
+        # A chat that already has a user turn stays editable (#6505); the browser
+        # only locks chats whose host omits the marker.
+        assert all(row["project_locked"] is False for row in sessions)
         assert all(not any(key.startswith("_") for key in row) for row in sessions)
     finally:
         await channel.stop()

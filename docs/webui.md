@@ -165,6 +165,8 @@ Use the workspace picker to browse folders on the connected nanobot host, enter 
 
 Browsing does not change the topic's workspace until you choose **Confirm**. **Filter this folder** searches only the current directory. **Cmd/Ctrl+Shift+G** opens host-path entry, with Tab completion; **Last visited folder** returns to the previous location.
 
+The picker stays available after a topic has messages, so an existing topic can move to another project without starting over. The control is disabled while a turn is running, and the host rejects the change in that case.
+
 Manual path entry remains available when the connected host does not support directory browsing. The host validates the selected path and access policy.
 
 Selecting a project does not replace the configured agent workspace. The two paths have different responsibilities:
